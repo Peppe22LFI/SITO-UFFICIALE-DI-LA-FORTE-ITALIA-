@@ -17,7 +17,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://i.imgur.com/o8XJIxz.jpg');
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://i.imgur.com/o8xJIXz.jpg');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -26,297 +26,263 @@
             scroll-behavior: smooth;
         }
 
-        /* HEADER & STATUS */
-        .header {
-            text-align: center;
-            padding: 60px 20px;
+        /* NAVBAR */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #333;
+        }
+        
+        .verde { color: var(--primary-green); font-weight: 900; }
+        .bianco { color: var(--primary-white); font-weight: 900; }
+        .rossa { color: var(--primary-red); font-weight: 900; }
+
+        .menu { display: flex; align-items: center; }
+        
+        .nav-link-italia {
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            margin-left: 25px;
+            background: linear-gradient(to right, #2ecc71 0%, #ffffff 50%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .server-status {
-            display: inline-flex;
+        .nav-link-italia:hover { transform: translateY(-2px); filter: brightness(1.3); }
+
+        .nav-btn-fivem {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            padding: 8px 18px;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: flex;
+            gap: 5px;
+            margin-left: 25px;
+            text-decoration: none;
+        }
+        .nav-btn-fivem:hover { border-color: var(--primary-green); background: #222; transform: translateY(-2px); }
+
+        header {
+            height: 45vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://i.imgur.com/o8xJIXz.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            background: var(--card-bg);
-            padding: 10px 25px;
-            border-radius: 50px;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        header h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        
+        .titolo-regolamento {
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #2ecc71 0%, #ffffff 50%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* BOX PLAYER AGGIUNTO */
+        .player-status-container {
+            background: rgba(0, 0, 0, 0.7);
             border: 2px solid var(--primary-green);
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
-            margin-top: 20px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .status-dot {
-            height: 12px;
-            width: 12px;
+            width: 10px;
+            height: 10px;
             background-color: var(--primary-green);
             border-radius: 50%;
-            display: inline-block;
-            margin-right: 15px;
             box-shadow: 0 0 10px var(--primary-green);
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
-        }
-
-        /* REGOLAMENTO SECTION */
-        .regolamento-container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto 100px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            min-height: 700px;
-        }
-
-        .sidebar {
-            width: 300px;
-            background: rgba(0, 0, 0, 0.5);
-            border-right: 1px solid rgba(255,255,255,0.1);
-            padding: 20px 0;
-        }
-
-        .sidebar-item {
-            padding: 15px 25px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #888;
-            border-left: 4px solid transparent;
-            text-transform: uppercase;
-        }
-
-        .sidebar-item:hover {
-            color: var(--primary-white);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .sidebar-item.active {
-            color: var(--primary-green);
-            background: rgba(46, 204, 113, 0.1);
-            border-left-color: var(--primary-green);
-        }
-
-        .rules-content {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .rule-card {
-            background: rgba(255,255,255,0.03);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border-left: 4px solid #555;
-        }
-
-        .rule-title {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
         }
 
         .neon-box {
-            border: 2px solid var(--primary-green);
-            padding: 30px;
+            padding: 60px 20px;
             text-align: center;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: inset 0 0 15px rgba(46, 204, 113, 0.2);
+            margin-bottom: 50px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 30px;
+            border: 3px solid #fff;
+            animation: neon-pulse 2.5s infinite alternate;
         }
 
         .neon-text {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
             font-style: italic;
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+            line-height: 1.1;
+            letter-spacing: 2px;
+            color: #fff;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        @keyframes neon-pulse {
+            0% { border-color: var(--primary-green); box-shadow: 0 0 20px var(--primary-green), inset 0 0 15px var(--primary-green); text-shadow: 0 0 15px var(--primary-green); }
+            50% { border-color: var(--primary-white); box-shadow: 0 0 40px var(--primary-white), inset 0 0 20px var(--primary-white); text-shadow: 0 0 20px var(--primary-white); }
+            100% { border-color: var(--primary-red); box-shadow: 0 0 20px var(--primary-red), inset 0 0 15px var(--primary-red); text-shadow: 0 0 15px var(--primary-red); }
         }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        th { color: var(--primary-green); }
 
-        @media (max-width: 900px) {
-            .regolamento-container { flex-direction: column; }
-            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        }
+        #regolamento-section { padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
+        .regolamento-container { display: flex; background: var(--card-bg); border-radius: 15px; min-height: 800px; border: 1px solid #333; overflow: hidden; }
+        .sidebar { width: 320px; background: rgba(15, 15, 15, 0.9); border-right: 1px solid #333; display: flex; flex-direction: column; }
+        .sidebar-item { padding: 18px 25px; font-weight: 600; color: #777; cursor: pointer; transition: 0.3s; border-left: 4px solid transparent; text-transform: uppercase; font-size: 0.8rem; border-bottom: 1px solid #1f1f1f; }
+        .sidebar-item.active { color: white; border-left: 4px solid var(--primary-green); background: rgba(46, 204, 113, 0.1); }
+        .rules-content { flex: 1; padding: 50px; overflow-y: auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .rule-card { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 30px; margin-bottom: 25px; border-left: 5px solid var(--primary-red); }
+        .rule-text { color: #ccc; font-size: 1.1rem; line-height: 1.8; white-space: pre-line; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #444; padding: 12px; text-align: center; color: white; }
+        th { background: rgba(46, 204, 113, 0.2); color: var(--primary-green); }
+
+        footer { text-align: center; padding: 40px; color: #555; background: #000; }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <h1>LA FORTE ITALIA RP</h1>
-        <div class="server-status">
-            <span class="status-dot"></span>
-            <span id="player-count">CARICAMENTO PLAYERS...</span>
+<nav>
+    <div class="logo-text">
+        <span class="verde">LA</span> <span class="bianco">FORTE</span> <span class="rossa">ITALIA</span>
+    </div>
+    <div class="menu">
+        <a href="#home" class="nav-link-italia">HOME</a>
+        <a href="https://discord.gg/Z8dWhEZPTa" target="_blank" class="nav-link-italia">INFO & DONAZIONI</a>
+        <a href="https://discord.gg/SmzY4QT45k" target="_blank" class="nav-link-italia">DISCORD</a>
+        <a href="https://cfx.re/join/4odj5q" class="nav-btn-fivem" target="_blank">
+            <span class="verde">ENTRA</span> <span class="bianco">NEL</span> <span class="rossa">SERVER</span>
+        </a>
+    </div>
+</nav>
+
+<header id="home">
+    <h1><span class="verde">LA</span> <span class="bianco">FORTE</span> <span class="rossa">ITALIA</span></h1>
+    
+    <div class="player-status-container">
+        <div class="status-dot"></div>
+        <span style="font-weight: 700; color: white; font-size: 0.9rem;">PLAYER ONLINE:</span>
+        <span id="player-count" style="color: var(--primary-green); font-weight: 900; font-size: 1.1rem;">--- / ---</span>
+    </div>
+
+    <div class="titolo-regolamento">REGOLAMENTO INTEGRALE UFFICIALE</div>
+</header>
+
+<section id="regolamento-section">
+    <div class="regolamento-container">
+        <div class="sidebar">
+            <div class="sidebar-item active" onclick="openTab(event, 'buonsenso')">BUONSENSO</div>
+            <div class="sidebar-item" onclick="openTab(event, 'generale')">GENERALE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'zone-safe')">ZONE SAFE & ROSSE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'armi')">ARMI CONSENTITE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'illegali')">AZIONI ILLEGALI</div>
+            <div class="sidebar-item" onclick="openTab(event, 'freeroam')">AZIONI FREE-ROAM</div>
+            <div class="sidebar-item" onclick="openTab(event, 'mafie')">MAFIE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'rapine')">RAPINE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'medici')">MEDICI</div>
+            <div class="sidebar-item" onclick="openTab(event, 'fdo')">FDO</div>
+            <div class="sidebar-item" onclick="openTab(event, 'perma-jail')">PERMADEATH / JAIL</div>
         </div>
-    </header>
 
-    <section id="regolamento-section">
-        <div class="regolamento-container">
-            <div class="sidebar">
-                <div class="sidebar-item active" onclick="openTab(event, 'buonsenso')">BUONSENSO</div>
-                <div class="sidebar-item" onclick="openTab(event, 'generale')">GENERALE</div>
-                <div class="sidebar-item" onclick="openTab(event, 'zone-safe')">ZONE SAFE & ROSSE</div>
-                <div class="sidebar-item" onclick="openTab(event, 'armi')">ARMI CONSENTITE</div>
-                <div class="sidebar-item" onclick="openTab(event, 'illegali')">AZIONI ILLEGALI</div>
-                <div class="sidebar-item" onclick="openTab(event, 'freeroam')">AZIONI FREE-ROAM</div>
-                <div class="sidebar-item" onclick="openTab(event, 'mafie')">MAFIE</div>
-                <div class="sidebar-item" onclick="openTab(event, 'rapine')">RAPINE</div>
-                <div class="sidebar-item" onclick="openTab(event, 'medici')">MEDICI</div>
-                <div class="sidebar-item" onclick="openTab(event, 'fdo')">FDO</div>
-                <div class="sidebar-item" onclick="openTab(event, 'perma-jail')">PERMADEATH / JAIL</div>
+        <div class="rules-content">
+            <div id="buonsenso" class="tab-content active">
+                <div class="neon-box">
+                    <div class="neon-text">
+                        "Non giocare per vincere una scena,<br>
+                        gioca per creare una storia che valga<br>
+                        la pena di essere raccontata."
+                    </div>
+                </div>
+                <div class="rule-card" style="border-left-color: var(--primary-green);">
+                    <span class="rule-text">
+                        Il Buonsenso è il pilastro fondamentale de <strong>La Forte Italia RP</strong>.
+                        Ricorda che siamo qui per divertirci insieme: se un'azione risulta palesemente irrealistica o rovina l'esperienza altrui, va evitata a prescindere dal regolamento scritto.
+                    </span>
+                </div>
             </div>
-
-            <div class="rules-content">
-                <div id="buonsenso" class="tab-content active">
-                    <div class="neon-box">
-                        <div class="neon-text">
-                            "Non giocare per vincere una scena,<br>
-                            gioca per creare una storia che valga<br>
-                            la pena di essere raccontata."
-                        </div>
-                    </div>
-                    <div class="rule-card" style="border-left-color: var(--primary-green);">
-                        <span class="rule-text">
-                            Il Buonsenso è il pilastro fondamentale de <strong>La Forte Italia RP</strong>.
-                            Ricorda che siamo qui per divertirci insieme: se un'azione risulta palesemente irrealistica o rovina l'esperienza altrui, va evitata a prescindere dal regolamento scritto.
-                        </span>
-                    </div>
-                </div>
-
-                <div id="generale" class="tab-content">
-                    <h2>REGOLAMENTO GENERALE</h2>
-                    <div class="rule-card">
-                        <span class="rule-text">
-                            • È vietato fare <strong>RDM</strong> (Random Deathmatch) o <strong>VDM</strong> (Vehicle Deathmatch).<br>
-                            • È vietato il <strong>NO FEAR</strong>: rispetta la tua vita nel gioco.<br>
-                            • È vietato il <strong>FAIL RP</strong>: evita azioni irrealistiche.<br>
-                            • È vietato il <strong>MIXCHAT</strong> (usare OOC in IC e viceversa).<br>
-                            • È vietato fare <strong>STREAM SNIPING</strong> o usare termini vietati da Twitch.<br>
-                            • È vietato il <strong>METAGAME</strong>: non usare informazioni ottenute fuori dal gioco.<br>
-                            • È vietato fare <strong>POWERGAME</strong> o <strong>COMBAT LOG</strong>.<br>
-                            • <strong>ASSOLUTAMENTE VIETATO IL SEX RP E ATTI SESSUALI (BAN DIRETTO).</strong>
-                        </span>
-                    </div>
-                </div>
-
-                <div id="zone-safe" class="tab-content">
-                    <h2>ZONE SAFE, SEMI-SAFE E ROSSE</h2>
-                    <div class="rule-card" style="border-left-color: var(--primary-green);">
-                        <span class="rule-title" style="color: var(--primary-green);">SAFE ZONE</span>
-                        <span class="rule-text">Ospedale, zona spawn, garage centrale, punti raccolta lavori NO WL.</span>
-                    </div>
-                    <div class="rule-card" style="border-left-color: #f1c40f;">
-                        <span class="rule-title" style="color: #f1c40f;">ZONE SEMI-SAFE</span>
-                        <span class="rule-text">Stazioni FDO (Azioni solo tramite Ticket).</span>
-                    </div>
-                    <div class="rule-card" style="border-left-color: var(--primary-red);">
-                        <span class="rule-title" style="color: var(--primary-red);">ZONE ROSSE</span>
-                        <span class="rule-text">Punti raccolta/processo droghe e Case Mafia. Ingaggio a vista consentito.</span>
-                    </div>
-                </div>
-
-                <div id="armi" class="tab-content">
-                    <h2>ARMI CONSENTITE</h2>
-                    <div class="rule-card">
-                        <span class="rule-text">
-                            <strong>Civili:</strong> Armi bianche, Pistole (SNS, 9MM).<br>
-                            <strong>Criminali:</strong> Automatiche (PDW, UZI), Fucili d'assalto (AK-47).<br>
-                            <strong>FDO:</strong> Taser, SMG, Fucile d'ordinanza.
-                        </span>
-                    </div>
-                </div>
-
-                <div id="rapine" class="tab-content">
-                    <h2>REGOLAMENTO RAPINE</h2>
-                    <div class="rule-card">
-                        <table>
-                            <thead>
-                                <tr><th>ATTIVITÀ</th><th>FFOO</th><th>CRIMINALI</th><th>OSTAGGI</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>ATM</td><td>4</td><td>2/3</td><td>0</td></tr>
-                                <tr><td>CASA</td><td>2</td><td>2</td><td>0</td></tr>
-                                <tr><td>GIOIELLERIA</td><td>-</td><td>-</td><td>SI</td></tr>
-                            </tbody>
-                        </table>
-                        <p style="margin-top:20px;">* Contrattazione minima: 5 minuti. Vietato startare 30 min prima del riavvio.</p>
-                    </div>
-                </div>
-
-                <div id="mafie" class="tab-content"><h2>REGOLAMENTO MAFIE</h2><div class="rule-card">Massimo 1 mafia può fare alleanza. Uscita da mafia = Wipe personaggio.</div></div>
-                <div id="medici" class="tab-content"><h2>REGOLAMENTO MEDICI</h2><div class="rule-card">I medici sono neutrali. È vietato ucciderli in servizio o insultarli durante il ress.</div></div>
-                <div id="fdo" class="tab-content"><h2>REGOLAMENTO FDO</h2><div class="rule-card">Perquisizione solo con valido motivo. Ergastolo con minimo 5 reati gravi.</div></div>
-                <div id="illegali" class="tab-content"><h2>AZIONI ILLEGALI</h2><div class="rule-card">Vietato sparare da veicolo sopra i 150km/h. Vietato nascondersi nei cespugli.</div></div>
-                <div id="freeroam" class="tab-content"><h2>FREE-ROAM</h2><div class="rule-card">Richiesti 4 FDO per rapire un civile, 6 FDO per un agente.</div></div>
-                <div id="perma-jail" class="tab-content"><h2>PERMADEATH</h2><div class="rule-card">Richiesto Ticket con 5 motivazioni valide. L'ergastolo è considerato Permadeath.</div></div>
-
             </div>
-        </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        // FUNZIONE CAMBIO TAB REGOLAMENTO
-        function openTab(evt, tabName) {
-            var i, tabcontent, sidebaritems;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            sidebaritems = document.getElementsByClassName("sidebar-item");
-            for (i = 0; i < sidebaritems.length; i++) {
-                sidebaritems[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+<footer>
+    <p>&copy; 2026 LA FORTE ITALIA RP - TUTTI I DIRITTI RISERVATI</p>
+</footer>
+
+<script>
+    // 1. FUNZIONE TAB (SINGOLA E PULITA)
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
         }
-
-        // SISTEMA PLAYER COUNT FIVE M
-        const serverID = '4odj5q'; 
-
-        async function updatePlayers() {
-            try {
-                const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${serverID}`);
-                const data = await response.json();
-                const players = data.Data.clients;
-                const maxPlayers = data.Data.sv_maxclients;
-                document.getElementById('player-count').innerText = `GIOCATORI ONLINE: ${players} / ${maxPlayers}`;
-            } catch (error) {
-                document.getElementById('player-count').innerText = "SERVER ONLINE";
-            }
+        tablinks = document.getElementsByClassName("sidebar-item");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
         }
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
 
-        setInterval(updatePlayers, 5000);
-        updatePlayers();
-    </script>
+    // 2. FUNZIONE PLAYER (AGGIORNATA PER GITHUB)
+    async function getOnlinePlayers() {
+        const serverID = '4odj5q';
+        const display = document.getElementById('player-count');
+        
+        try {
+            // Usiamo un proxy affidabile per superare i blocchi di GitHub
+            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://servers-frontend.fivem.net/api/servers/single/' + serverID)}&t=${new Date().getTime()}`);
+            const data = await response.json();
+            const serverData = JSON.parse(data.contents);
+            
+            if (serverData && serverData.Data) {
+                // Formato Discord: Player / Max
+                display.innerText = serverData.Data.clients + " / " + serverData.Data.sv_maxclients;
+                display.style.color = "#2ecc71";
+            }
+        } catch (e) {
+            console.log("Errore caricamento player:", e);
+            display.innerText = "ONLINE"; // Fallback se l'API è lenta
+        }
+    }
+
+    // Avvio immediato e refresh ogni 5 secondi
+    getOnlinePlayers();
+    setInterval(getOnlinePlayers, 5000);
+</script>
+
 </body>
 </html>
