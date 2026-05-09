@@ -3,126 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Forte Italia RP | Regolamento</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>La Forte Italia RP | Regolamento Ufficiale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --p-green: #2ecc71; --p-red: #e74c3c; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: #0b0b0b; color: white; }
-        
-        /* HEADER */
-        header { text-align: center; padding: 50px 20px; background: linear-gradient(to bottom, #1a1a1a, #0b0b0b); }
-        .player-box { display: inline-block; border: 2px solid var(--p-green); padding: 10px 20px; border-radius: 30px; margin-top: 20px; }
-        
-        /* CONTAINER */
-        .main-container { display: flex; max-width: 1200px; margin: 20px auto; background: #151515; border-radius: 10px; overflow: hidden; min-height: 600px; border: 1px solid #333; }
-        
-        /* SIDEBAR */
-        .menu { width: 250px; background: #111; border-right: 1px solid #333; }
-        .menu-btn { padding: 15px 20px; cursor: pointer; border-bottom: 1px solid #222; color: #888; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; font-weight: bold; }
-        .menu-btn:hover { background: #1a1a1a; color: white; }
-        .menu-btn.active { color: var(--p-green); border-left: 4px solid var(--p-green); background: rgba(46, 204, 113, 0.1); }
+        :root {
+            --primary-green: #2ecc71;
+            --primary-white: #ffffff;
+            --primary-red: #e74c3c;
+            --bg-dark: #0b0b0b;
+            --card-bg: rgba(10, 10, 10, 0.9);
+        }
 
-        /* CONTENT */
-        .content { flex: 1; padding: 40px; }
-        .tab { display: none; }
-        .tab.active { display: block; }
-        .card { background: #1a1a1a; padding: 20px; border-radius: 8px; border-left: 4px solid var(--p-red); line-height: 1.8; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://i.imgur.com/o8xJIXz.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #eeeeee;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #333;
+        }
         
-        @media (max-width: 800px) { .main-container { flex-direction: column; } .menu { width: 100%; } }
+        .verde { color: var(--primary-green); font-weight: 900; }
+        .bianco { color: var(--primary-white); font-weight: 900; }
+        .rossa { color: var(--primary-red); font-weight: 900; }
+
+        .menu { display: flex; align-items: center; }
+        
+        .nav-link-italia {
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            margin-left: 25px;
+            background: linear-gradient(to right, #2ecc71 0%, #ffffff 50%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link-italia:hover { transform: translateY(-2px); filter: brightness(1.3); }
+
+        .nav-btn-fivem {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            padding: 8px 18px;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: flex;
+            gap: 5px;
+            margin-left: 25px;
+            text-decoration: none;
+        }
+        .nav-btn-fivem:hover { border-color: var(--primary-green); background: #222; transform: translateY(-2px); }
+
+        header {
+            height: 45vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://i.imgur.com/o8xJIXz.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        header h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        
+        .titolo-regolamento {
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #2ecc71 0%, #ffffff 50%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* BOX PLAYER AGGIUNTO */
+        .player-status-container {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--primary-green);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        .neon-box {
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 30px;
+            border: 3px solid #fff;
+            animation: neon-pulse 2.5s infinite alternate;
+        }
+
+        .neon-text {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        @keyframes neon-pulse {
+            0% { border-color: var(--primary-green); box-shadow: 0 0 20px var(--primary-green), inset 0 0 15px var(--primary-green); text-shadow: 0 0 15px var(--primary-green); }
+            50% { border-color: var(--primary-white); box-shadow: 0 0 40px var(--primary-white), inset 0 0 20px var(--primary-white); text-shadow: 0 0 20px var(--primary-white); }
+            100% { border-color: var(--primary-red); box-shadow: 0 0 20px var(--primary-red), inset 0 0 15px var(--primary-red); text-shadow: 0 0 15px var(--primary-red); }
+        }
+
+        #regolamento-section { padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
+        .regolamento-container { display: flex; background: var(--card-bg); border-radius: 15px; min-height: 800px; border: 1px solid #333; overflow: hidden; }
+        .sidebar { width: 320px; background: rgba(15, 15, 15, 0.9); border-right: 1px solid #333; display: flex; flex-direction: column; }
+        .sidebar-item { padding: 18px 25px; font-weight: 600; color: #777; cursor: pointer; transition: 0.3s; border-left: 4px solid transparent; text-transform: uppercase; font-size: 0.8rem; border-bottom: 1px solid #1f1f1f; }
+        .sidebar-item.active { color: white; border-left: 4px solid var(--primary-green); background: rgba(46, 204, 113, 0.1); }
+        .rules-content { flex: 1; padding: 50px; overflow-y: auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .rule-card { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 30px; margin-bottom: 25px; border-left: 5px solid var(--primary-red); }
+        .rule-text { color: #ccc; font-size: 1.1rem; line-height: 1.8; white-space: pre-line; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #444; padding: 12px; text-align: center; color: white; }
+        th { background: rgba(46, 204, 113, 0.2); color: var(--primary-green); }
+
+        footer { text-align: center; padding: 40px; color: #555; background: #000; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>LA FORTE ITALIA RP</h1>
-    <div class="player-box">
-        <span id="count">CARICAMENTO...</span>
+<nav>
+    <div class="logo-text">
+        <span class="verde">LA</span> <span class="bianco">FORTE</span> <span class="rossa">ITALIA</span>
     </div>
+    <div class="menu">
+        <a href="#home" class="nav-link-italia">HOME</a>
+        <a href="https://discord.gg/Z8dWhEZPTa" target="_blank" class="nav-link-italia">INFO & DONAZIONI</a>
+        <a href="https://discord.gg/SmzY4QT45k" target="_blank" class="nav-link-italia">DISCORD</a>
+        <a href="https://cfx.re/join/4odj5q" class="nav-btn-fivem" target="_blank">
+            <span class="verde">ENTRA</span> <span class="bianco">NEL</span> <span class="rossa">SERVER</span>
+        </a>
+    </div>
+</nav>
+
+<header id="home">
+    <h1><span class="verde">LA</span> <span class="bianco">FORTE</span> <span class="rossa">ITALIA</span></h1>
+    
+    <div class="player-status-container">
+        <div class="status-dot"></div>
+        <span style="font-weight: 700; color: white; font-size: 0.9rem;">PLAYER ONLINE:</span>
+        <span id="player-count" style="color: var(--primary-green); font-weight: 900; font-size: 1.1rem;">--- / ---</span>
+    </div>
+
+    <div class="titolo-regolamento">REGOLAMENTO INTEGRALE UFFICIALE</div>
 </header>
 
-<div class="main-container">
-    <div class="menu">
-        <div class="menu-btn active" onclick="apri(event, 't1')">BUONSENSO</div>
-        <div class="menu-btn" onclick="apri(event, 't2')">GENERALE</div>
-        <div class="menu-btn" onclick="apri(event, 't3')">ZONE</div>
-        <div class="menu-btn" onclick="apri(event, 't4')">ARMI</div>
-        <div class="menu-btn" onclick="apri(event, 't5')">RAPINE</div>
+<section id="regolamento-section">
+    <div class="regolamento-container">
+        <div class="sidebar">
+            <div class="sidebar-item active" onclick="openTab(event, 'buonsenso')">BUONSENSO</div>
+            <div class="sidebar-item" onclick="openTab(event, 'generale')">GENERALE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'zone-safe')">ZONE SAFE & ROSSE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'armi')">ARMI CONSENTITE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'illegali')">AZIONI ILLEGALI</div>
+            <div class="sidebar-item" onclick="openTab(event, 'freeroam')">AZIONI FREE-ROAM</div>
+            <div class="sidebar-item" onclick="openTab(event, 'mafie')">MAFIE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'rapine')">RAPINE</div>
+            <div class="sidebar-item" onclick="openTab(event, 'medici')">MEDICI</div>
+            <div class="sidebar-item" onclick="openTab(event, 'fdo')">FDO</div>
+            <div class="sidebar-item" onclick="openTab(event, 'perma-jail')">PERMADEATH / JAIL</div>
+        </div>
+
+        <div class="rules-content">
+            <div id="buonsenso" class="tab-content active">
+                <div class="neon-box">
+                    <div class="neon-text">
+                        "Non giocare per vincere una scena,<br>
+                        gioca per creare una storia che valga<br>
+                        la pena di essere raccontata."
+                    </div>
+                </div>
+                <div class="rule-card" style="border-left-color: var(--primary-green);">
+                    <span class="rule-text">
+                        Il Buonsenso è il pilastro fondamentale de <strong>La Forte Italia RP</strong>.
+                        Ricorda che siamo qui per divertirci insieme: se un'azione risulta palesemente irrealistica o rovina l'esperienza altrui, va evitata a prescindere dal regolamento scritto.
+                    </span>
+                </div>
+            </div>
+            </div>
     </div>
+</section>
 
-    <div class="content">
-        <div id="t1" class="tab active">
-            <h2>IL BUONSENSO</h2>
-            <div class="card" style="border-left-color: var(--p-green)">
-                Il Buonsenso è il pilastro fondamentale. Se un'azione è irrealistica, va evitata a prescindere dal regolamento.
-            </div>
-        </div>
-
-        <div id="t2" class="tab">
-            <h2>REGOLAMENTO GENERALE</h2>
-            <div class="card">
-                - Vietato RDM, VDM e NO FEAR.<br>
-                - Vietato FAIL RP e METAGAME.<br>
-                - Vietato lo STREAM SNIPING.<br>
-                - VIETATO IL SEX RP (BAN DIRETTO).
-            </div>
-        </div>
-
-        <div id="t3" class="tab">
-            <h2>ZONE SAFE E ROSSE</h2>
-            <div class="card">
-                SAFE: Ospedale, Spawn, Parcheggi.<br>
-                ROSSE: Campi droga, Case Mafia.
-            </div>
-        </div>
-
-        <div id="t4" class="tab">
-            <h2>ARMI</h2>
-            <div class="card">
-                Civili: 9mm, armi bianche.<br>
-                Criminali: AK47, Uzi, PDW.
-            </div>
-        </div>
-
-        <div id="t5" class="tab">
-            <h2>RAPINE</h2>
-            <div class="card">
-                ATM: 4 FDO / 3 CRIM.<br>
-                NEGOZIO: 4 FDO / 4 CRIM.<br>
-                BANCA: 6 FDO / 6 CRIM.
-            </div>
-        </div>
-    </div>
-</div>
+<footer>
+    <p>&copy; 2026 LA FORTE ITALIA RP - TUTTI I DIRITTI RISERVATI</p>
+</footer>
 
 <script>
-    // FUNZIONE CLICK (CORAZZATA)
-    function apri(e, id) {
-        // Nasconde tutti i tab
-        var tabs = document.getElementsByClassName("tab");
-        for (var i = 0; i < tabs.length; i++) {
-            tabs[i].classList.remove("active");
+    // 1. FUNZIONE TAB (SINGOLA E PULITA)
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
         }
-        // Toglie active dai bottoni
-        var btns = document.getElementsByClassName("menu-btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].classList.remove("active");
+        tablinks = document.getElementsByClassName("sidebar-item");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
         }
-        // Mostra quello giusto
-        document.getElementById(id).classList.add("active");
-        e.currentTarget.classList.add("active");
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
     }
 
-    // PLAYER COUNT
-    async function getPlayers() {
+    // 2. FUNZIONE PLAYER (AGGIORNATA PER GITHUB)
+    async function getOnlinePlayers() {
+        const serverID = '4odj5q';
+        const display = document.getElementById('player-count');
+        
         try {
-            const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://servers-frontend.fivem.net/api/servers/single/4odj5q')}`);
-            const j = await r.json();
-            const d = JSON.parse(j.contents);
-            document.getElementById('count').innerText = "PLAYERS: " + d.Data.clients + " / " + d.Data.sv_maxclients;
-        } catch(e) { document.getElementById('count').innerText = "SERVER ONLINE"; }
+            // Usiamo un proxy affidabile per superare i blocchi di GitHub
+            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://servers-frontend.fivem.net/api/servers/single/' + serverID)}&t=${new Date().getTime()}`);
+            const data = await response.json();
+            const serverData = JSON.parse(data.contents);
+            
+            if (serverData && serverData.Data) {
+                // Formato Discord: Player / Max
+                display.innerText = serverData.Data.clients + " / " + serverData.Data.sv_maxclients;
+                display.style.color = "#2ecc71";
+            }
+        } catch (e) {
+            console.log("Errore caricamento player:", e);
+            display.innerText = "ONLINE"; // Fallback se l'API è lenta
+        }
     }
-    getPlayers();
-    setInterval(getPlayers, 10000);
+
+    // Avvio immediato e refresh ogni 5 secondi
+    getOnlinePlayers();
+    setInterval(getOnlinePlayers, 5000);
 </script>
 
 </body>
