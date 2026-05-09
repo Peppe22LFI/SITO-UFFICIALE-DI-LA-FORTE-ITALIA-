@@ -126,6 +126,7 @@
             100% { transform: scale(0.95); opacity: 0.7; }
         }
 
+        /* SCRITTA NEON TRICOLORE */
         .neon-box {
             padding: 60px 20px;
             text-align: center;
@@ -193,7 +194,7 @@
     <div class="player-status-container">
         <div class="status-dot"></div>
         <span style="font-weight: 700; color: white; font-size: 0.9rem;">PLAYER ONLINE:</span>
-        <span id="player-count" style="color: var(--primary-green); font-weight: 900; font-size: 1.1rem;">--- / ---</span>
+        <span id="player-count" style="color: var(--primary-green); font-weight: 900; font-size: 1.1rem;">CARICAMENTO...</span>
     </div>
 
     <div class="titolo-regolamento">REGOLAMENTO INTEGRALE UFFICIALE</div>
@@ -218,18 +219,15 @@
         <div class="rules-content">
             <div id="buonsenso" class="tab-content active">
                 <div class="neon-box">
-                    <div class="neon-text">
-                        "Non giocare per vincere una scena,<br>
-                        gioca per creare una storia che valga<br>
-                        la pena di essere raccontata."
-                    </div>
+                    <div class="neon-text">"Non giocare per vincere una scena,<br>gioca per creare una storia"</div>
                 </div>
                 <div class="rule-card" style="border-left-color: var(--primary-green);">
-                    <span class="rule-text">
-                        Il Buonsenso è il pilastro fondamentale de <strong>La Forte Italia RP</strong>.
-                        Ricorda che siamo qui per divertirci insieme: se un'azione risulta palesemente irrealistica o rovina l'esperienza altrui, va evitata a prescindere dal regolamento scritto.
-                    </span>
+                    <span class="rule-text">Il Buonsenso è il pilastro fondamentale de <strong>La Forte Italia RP</strong>.</span>
                 </div>
+            </div>
+
+            <div id="generale" class="tab-content">
+                <div class="rule-card"><span class="rule-text">E' severamente vietato fare RDM, VDM e NO FEAR. Rispetta la vita del personaggio.</span></div>
             </div>
             </div>
     </div>
@@ -240,48 +238,41 @@
 </footer>
 
 <script>
-    // 1. FUNZIONE TAB (SINGOLA E PULITA)
+    // GESTIONE TAB ORIGINALE
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].classList.remove("active");
-        }
+        for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; tabcontent[i].classList.remove("active"); }
         tablinks = document.getElementsByClassName("sidebar-item");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
+        for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
         document.getElementById(tabName).style.display = "block";
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("active");
     }
 
-    // 2. FUNZIONE PLAYER (AGGIORNATA PER GITHUB)
+    // SCRIPT PLAYER AGGIORNATO (MOLTO PIÙ RAPIDO)
     async function getOnlinePlayers() {
         const serverID = '4odj5q';
         const display = document.getElementById('player-count');
         
         try {
-            // Usiamo un proxy affidabile per superare i blocchi di GitHub
-            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://servers-frontend.fivem.net/api/servers/single/' + serverID)}&t=${new Date().getTime()}`);
-            const data = await response.json();
-            const serverData = JSON.parse(data.contents);
+            // Utilizziamo un sistema di bypass della cache per dati in tempo reale
+            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://servers-frontend.fivem.net/api/servers/single/' + serverID)}&nocache=${Date.now()}`);
+            const json = await response.json();
+            const data = JSON.parse(json.contents);
             
-            if (serverData && serverData.Data) {
-                // Formato Discord: Player / Max
-                display.innerText = serverData.Data.clients + " / " + serverData.Data.sv_maxclients;
-                display.style.color = "#2ecc71";
+            if (data && data.Data) {
+                display.innerText = data.Data.clients + " / " + data.Data.sv_maxclients;
+            } else {
+                display.innerText = "ONLINE";
             }
         } catch (e) {
-            console.log("Errore caricamento player:", e);
-            display.innerText = "ONLINE"; // Fallback se l'API è lenta
+            display.innerText = "ONLINE";
         }
     }
 
-    // Avvio immediato e refresh ogni 5 secondi
     getOnlinePlayers();
-    setInterval(getOnlinePlayers, 5000);
+    setInterval(getOnlinePlayers, 5000); // Aggiorna ogni 5 secondi per essere istantaneo
 </script>
 
 </body>
