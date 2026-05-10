@@ -3,115 +3,825 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Forte Italia RP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>La Forte Italia RP | Regolamento Ufficiale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: #0b0b0b; color: white; }
-        header { text-align: center; padding: 40px; border-bottom: 2px solid #2ecc71; }
-        
-        .container { display: flex; max-width: 1200px; margin: 20px auto; min-height: 600px; border: 1px solid #333; }
-        
-        /* SIDEBAR */
-        .sidebar { width: 280px; background: #111; border-right: 1px solid #333; }
-        .btn { padding: 20px; cursor: pointer; border-bottom: 1px solid #222; transition: 0.3s; font-weight: bold; color: #777; }
-        .btn:hover { background: #1a1a1a; color: white; }
-        .btn.active { background: #2ecc71; color: black; }
+        :root {
+            --primary-green: #2ecc71;
+            --primary-white: #ffffff;
+            --primary-red: #e74c3c;
+            --bg-dark: #0b0b0b;
+            --card-bg: rgba(10, 10, 10, 0.9);
+        }
 
-        /* CONTENUTO */
-        .content { flex: 1; padding: 40px; background: #151515; }
-        .sezione { display: none; }
-        .sezione.active { display: block; }
-        .box { background: #222; padding: 20px; border-radius: 8px; border-left: 5px solid #2ecc71; line-height: 1.6; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://i.imgur.com/o8xJIXz.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #eeeeee;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #333;
+        }
+        
+        .verde { color: var(--primary-green); font-weight: 900; }
+        .bianco { color: var(--primary-white); font-weight: 900; }
+        .rossa { color: var(--primary-red); font-weight: 900; }
+
+        .menu { display: flex; align-items: center; }
+        
+        .nav-link-italia {
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            margin-left: 25px;
+            background: linear-gradient(to right, #2ecc71 0%, #ffffff 50%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link-italia:hover { transform: translateY(-2px); filter: brightness(1.3); }
+
+        .nav-btn-fivem {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            padding: 8px 18px;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: flex;
+            gap: 5px;
+            margin-left: 25px;
+            text-decoration: none;
+        }
+        .nav-btn-fivem:hover { border-color: var(--primary-green); background: #222; transform: translateY(-2px); }
+
+        header {
+            height: 45vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://i.imgur.com/o8xJIXz.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        header h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        
+        .titolo-regolamento {
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #2ecc71 0%, #ffffff 50%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* BOX PLAYER AGGIUNTO */
+        .player-status-container {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--primary-green);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        /* SCRITTA NEON TRICOLORE */
+        .neon-box {
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 30px;
+            border: 3px solid #fff;
+            animation: neon-pulse 2.5s infinite alternate;
+        }
+
+        .neon-text {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        @keyframes neon-pulse {
+            0% { border-color: var(--primary-green); box-shadow: 0 0 20px var(--primary-green), inset 0 0 15px var(--primary-green); text-shadow: 0 0 15px var(--primary-green); }
+            50% { border-color: var(--primary-white); box-shadow: 0 0 40px var(--primary-white), inset 0 0 20px var(--primary-white); text-shadow: 0 0 20px var(--primary-white); }
+            100% { border-color: var(--primary-red); box-shadow: 0 0 20px var(--primary-red), inset 0 0 15px var(--primary-red); text-shadow: 0 0 15px var(--primary-red); }
+        }
+
+        #regolamento-section { padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
+        .regolamento-container { display: flex; background: var(--card-bg); border-radius: 15px; min-height: 800px; border: 1px solid #333; overflow: hidden; }
+        .sidebar { width: 320px; background: rgba(15, 15, 15, 0.9); border-right: 1px solid #333; display: flex; flex-direction: column; }
+        .sidebar-item { padding: 18px 25px; font-weight: 600; color: #777; cursor: pointer; transition: 0.3s; border-left: 4px solid transparent; text-transform: uppercase; font-size: 0.8rem; border-bottom: 1px solid #1f1f1f; }
+        .sidebar-item.active { color: white; border-left: 4px solid var(--primary-green); background: rgba(46, 204, 113, 0.1); }
+        .rules-content { flex: 1; padding: 50px; overflow-y: auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .rule-card { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 30px; margin-bottom: 25px; border-left: 5px solid var(--primary-red); }
+        .rule-text { color: #ccc; font-size: 1.1rem; line-height: 1.8; white-space: pre-line; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #444; padding: 12px; text-align: center; color: white; }
+        th { background: rgba(46, 204, 113, 0.2); color: var(--primary-green); }
+
+        footer { text-align: center; padding: 40px; color: #555; background: #000; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>LA FORTE ITALIA RP</h1>
-    <div style="border: 1px solid #2ecc71; display: inline-block; padding: 10px 20px; border-radius: 20px;">
-        <span id="player-count">CARICAMENTO PLAYERS...</span>
+<nav>
+    <div class="logo-text">
+        <span class="verde">LA</span> <span class="bianco">FORTE</span> <span class="rossa">ITALIA</span>
     </div>
+    <div class="menu">
+        <a href="#home" class="nav-link-italia">HOME</a>
+        <a href="https://discord.gg/Z8dWhEZPTa" target="_blank" class="nav-link-italia">INFO & DONAZIONI</a>
+        <a href="https://discord.gg/SmzY4QT45k" target="_blank" class="nav-link-italia">DISCORD</a>
+        <a href="https://cfx.re/join/4odj5q" class="nav-btn-fivem" target="_blank">
+            <span class="verde">ENTRA</span> <span class="bianco">NEL</span> <span class="rossa">SERVER</span>
+        </a>
+    </div>
+</nav>
+
+<header id="home">
+    <h1><span class="verde">LA</span> <span class="bianco">FORTE</span> <span class="rossa">ITALIA</span></h1>
+    
+    <div class="player-status-container">
+        <div class="status-dot"></div>
+        <span style="font-weight: 700; color: white; font-size: 0.9rem;">PLAYER ONLINE:</span>
+        <span id="player-count" style="color: var(--primary-green); font-weight: 900; font-size: 1.1rem;">CARICAMENTO...</span>
+    </div>
+
+    <div class="titolo-regolamento">REGOLAMENTO INTEGRALE UFFICIALE</div>
 </header>
 
-<div class="container">
-    <div class="sidebar">
-        <div class="btn active" onclick="mostra('buonsenso', this)">BUONSENSO</div>
-        <div class="btn" onclick="mostra('generale', this)">GENERALE</div>
-        <div class="btn" onclick="mostra('zone', this)">ZONE SAFE & ROSSE</div>
-        <div class="btn" onclick="mostra('armi', this)">ARMI</div>
-        <div class="btn" onclick="mostra('illegali', this)">AZIONI ILLEGALI</div>
+<section id="regolamento-section">
+
+    <div class="regolamento-container">
+
+        <div class="sidebar">
+
+            <div class="sidebar-item active" onclick="openTab(event, 'buonsenso')">BUONSENSO</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'generale')">GENERALE</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'zone-safe')">ZONE SAFE & ROSSE</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'armi')">ARMI CONSENTITE</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'illegali')">AZIONI ILLEGALI</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'freeroam')">AZIONI FREE-ROAM</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'mafie')">MAFIE</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'rapine')">RAPINE</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'medici')">MEDICI</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'fdo')">FDO</div>
+
+            <div class="sidebar-item" onclick="openTab(event, 'perma-jail')">PERMADEATH / JAIL</div>
+
+        </div>
+
+
+
+        <div class="rules-content">
+
+           
+
+            <div id="buonsenso" class="tab-content active">
+
+                <div class="neon-box">
+
+                    <div class="neon-text">
+
+                        "Non giocare per vincere una scena,<br>
+
+                        gioca per creare una storia che valga<br>
+
+                        la pena di essere raccontata."
+
+                    </div>
+
+                </div>
+
+                <div class="rule-card" style="border-left-color: var(--primary-green);">
+
+                    <span class="rule-text">
+
+                        Il Buonsenso è il pilastro fondamentale de <strong>La Forte Italia RP</strong>.
+
+                        Ricorda che siamo qui per divertirci insieme: se un'azione risulta palesemente irrealistica o rovina l'esperienza altrui, va evitata a prescindere dal regolamento scritto.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="generale" class="tab-content">
+
+                <div class="content-header"><h2>GENERALE</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+E’ severamente vietato fare RDM (Random Deatmatch) ovvero commettere un omicidio senza valido motivo RP;
+
+E’ severamente vietato fare VDM (Vehicle Deatmatch) ovvero uccidere o investire volontariamente un player con un veicolo. Sono esclusi i casi accidentali;
+
+E’ severamente vietato il NO FEAR cioè sottovalutare il pericolo o far finta che non esista;
+
+E’ severamente vietato il FAIL RP. Vengono Identificate con questo termine tutte le azioni irrealistiche o forzate, che nella vita reale non potrebbero verificarsi;
+
+E’ vietato il MIXCHAT ovvero scrivere cose IC in chat OOC e viceversa. IC e OOC significato rispettivamente “In Character” ovvero nel personaggio e “Out Of Character” fuori dal personaggio;
+
+E’ severamente vietato l’uso improprio dello /me;
+
+E’ severamente vietato fare METAGAME IC/OOC. Metagame OOC: riportare fatti o azioni riferite fuori game. Metagame IC: riconoscere una persona semplicemente dal vestiario o da una maschera pur conoscendola;
+
+E’ severamente vietato fare STREAM SNIPING;
+
+E’ severamente vietato usare termini non concessi da twitch.tv;
+
+E’ severamente vietato USCIRE DALL’RP. Ogni azione, anche se vengono commessi numerose infrazioni del regolamento, deve essere portata a termine nel miglior modo. Una volta finita, sarà possibile parlarne con uno staff in assistenza;
+
+E’ severamente vietato stare AFK;
+
+E’ severamente vietato fare POWERGAME, ovvero sfruttare le meccaniche di gioco di GTA (ad esempio salire con una supercar su una montagna);
+
+E’ vietato lo SLOG IN AZIONE, ovvero sloggare (uscire dal gioco) in azione. (punibile con un Richiamo o piu);
+
+E’ vietato il BUNNY HOP, ovvero continuare a saltare per andare piu veloci.
+
+E’ vietato fare REVENGE KILL. (esempio: vengo ucciso durante un’azione, mi risveglio in ospedale e vado subito a vendicarmi, ricordandomi tutto);
+
+E’ vietato lo SPAM in qualunque canale di gioco;
+
+E’ vietato fare CAR SURF; ovvero mettersi sul tetto di una macchina in movimento;
+
+HACK, CHEAT E BUG ABUSE verranno puniti con un ban (HACK e CHEAT non sono revocabili, previo controllo SS);
+
+E’ possibile puntare dal veicolo finché è sotto i 80 km/h, ed è possibile sparare SOLO a veicolo COMPLETAMENTE FERMO;
+
+Un player in coma NON PUO’ PARLARE;
+
+E’ VIETATO RUBARE i veicoli di qualsiasi attività / fazione se riconoscibile da livrea, targa o qualche simbolo ma non è possibile utilizzare il riconoscimento di un singolo veicolo tramite una livrea;
+
+Il limite di cibo o acqua TOTALI trasportabili da un player è di 10 unità;
+
+E’ SEVERAMENTE VIETATO distruggere o non restituire le SIM dopo un azione;
+
+Quando si viene rianimati dai medici si potrà ricordare l’ultima azione soltanto dopo un’ora reale, mentre quando si respawna dall’ospedale non si potrà ricordare nulla all'azione;
+
+E’ VIETATO indossare la divisa di una qualsiasi attività / fazione se riconoscibili da livree o simboli, almeno che non si faccia parte della medesima fazione;
+
+I poliziotti in servizio NELLE ZONE ROSSE O SE RAPITI con un valido motivo RP possono essere lootati (armi e munizioni);
+
+E’ vietato entrare nelle FREQUENZE RADIO di altre fazioni senza un valido motivo RP;
+
+E’ severamente vietato fare CAR JACK, ovvero rubare veicoli di altri player senza una motivazione RP;
+
+E’ severamente vietato fare FAKE ROLEPLAY, ovvero immedesimarsi in un lavoro whitelist (es. FDO, Medico, Concessionario, ect.) al quale non si appartiene;
+
+E’ SEVERAMENTE VIETATO andare in una zona nel quale è appena finita un’azione (segnalata con /azione Azione finita l “civico”) per 15 minuti a partire dalla fine dell’azione;
+
+E’ severamente vietato fare COMBAT LOG, ovvero unirsi ad un’azione già in corso;
+
+E’ severamente vietato fare CAR KILL, ovvero stare sopra un player con un veicolo per bloccarlo;
+
+E’ severamente vietato fare un’ AZIONE A SCOPO DI LOOT, ovvero portare avanti un’azione con lo scopo di lootare la vittima. Se vi è una scena RP ben strutturata (valutabile esclusivamente tramite clip), non sarà considerata azione a scopo di loot;
+
+Si può trasportare un corpo in macchina solo se c’è un posto libero (da ruolare con lo /me). E’ severamente vietato trasportare un corpo nel bagagliaio. E’ severamente vietato trasportare un corpo quando si è in moto;
+
+E’ vietato richiedere il ress da parte dello STAFF qualora fossero presenti medici in servizio. Resta inteso che la rianimazione è a discrezione dello STAFF. Resta inteso inoltre, che tale rianimazione verrà contata come il Respawn in ospedale;
+
+Chi utilizza una maschera / bandana o casco non potrà essere riconosciuto IN NESSUN MODO NEANCHE DAI VESTITI, VOCE E TATUAGGI;
+
+E’ vietato rubare i carichi ai lavori NO WL;
+
+Per il trasporto di un fucile pesante è NECESSARIO l’utilizzo del borsone;
+
+Una volta creato il personaggio, non sarà possibile cambiarne il viso. Per poterlo fare, ci sarà bisogno di andare in ospedale e pagare per l’operazione chirurgica (1 MLN€). E’ possibile farlo UNA SOLA VOLTA, e bisognerà richiedere il consenso dello STAFF aprendo un TICKET;
+
+E’ vietato chiamare l’ambulanza ad azione in corso;
+
+E’ NECESSARIO munirsi di documento d’identità presso l’ufficio anagrafe della centrale di polizia;
+
+Eventuali insulti a player a terra, verranno sempre interpretati come INSULTI OOC. Non sarà possibile utilizzare la scusa della radio. L’infrazione a tale regola sarà punita con un RICHIAMO;
+
+Vietato riproducere musica protetta da COPYRIGHT;
+
+Un membro dell’ FDO PUO’ ESSERE RAPITO solo nel caso in cui si ha una motivazione valida da convalidare tramite ticket, inoltre per rapire i Dirigenti devono essere date 3 motivazioni valide (non è consentito rapire un FDO per richiedere il riscatto);
+
+E’ vietato assaltare le zone di reclutamento;
+
+E’ vietato il POLICE BAIT, ovvero provocare intenzionalmente le forze dell’ordine in modo non realistico o forzato per iniziare un’azione contro di loro;
+
+E’ vietato utilizzare il Medikit/GAP una volta che è iniziata l’azione;
+
+E’ obbligatorio che almeno un membro per fazione abbia la clip per contestare un richiamo;
+
+E’ SEVERAMENTE VIETATO essere in possesso di un lavoro wl (attività/mafia/fdo) e giocare su altri server, sazione rimozione job.
+
+ASSOLUTAMENTE VIETATO IL SEX RP E ATTI SESSUALI SANZIONE BAN DIRETTO.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="zone-safe" class="tab-content">
+
+                <div class="content-header"><h2>ZONE SAFE, SEMI-SAFE E ROSSE</h2></div>
+
+                <div class="rule-card" style="border-left-color: var(--primary-green);">
+
+                    <span class="rule-title" style="color: var(--primary-green);">> SAFE ZONE</span>
+
+                    <span class="rule-text">
+
+Sono zone in cui è severamente vietato cominciare qualunque tipologia di azione illegale.
+
+
+
+OSPEDALE: è considerata zona safe sia dentro che fuori;
+
+ZONA SPAWN DEL PERSONAGGIO;
+
+GARAGE CENTRALE: Solo all’interno del Parcheggio;
+
+TUTTI I PUNTI RACCOLTA DEI LAVORI NO WL;
+
+                    </span>
+
+                </div>
+
+                <div class="rule-card" style="border-left-color: #f1c40f;">
+
+                    <span class="rule-title" style="color: #f1c40f;">> ZONE SEMI-SAFE</span>
+
+                    <span class="rule-text">
+
+STAZIONE DI POLIZIA / CARABINIERI / FINANZA;
+
+
+
+Sarà possibile effettuare azioni all’interno di queste ultime soltanto tramite ticket.
+
+                    </span>
+
+                </div>
+
+                <div class="rule-card" style="border-left-color: var(--primary-red);">
+
+                    <span class="rule-title" style="color: var(--primary-red);">> ZONE ROSSE</span>
+
+                    <span class="rule-text">
+
+Sono zone in cui è possibile ingaggiare a vista.
+
+
+
+PUNTI RACCOLTA/PROCESSO DROGHE;
+
+CASE MAFIA (primo ingaggio consentito solo da parte dei proprietari in caso vengano avvistate persone a viso coperto);
+
+
+
+Non rispettare queste regole, sarà considerato NO FEAR.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="armi" class="tab-content">
+
+                <div class="content-header"><h2>ARMI CONSENTITE</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+Le armi consentite a tutti i cittadini: Armi bianche (Coltello, Mazza da Baseball, Tirapugni), Pistole (SNS, 9MM).
+
+Le armi non specificate sono illegali.
+
+
+
+Criminali: Armi bianche, Pistole (SNS, 9MM, MK2), Armi Automatiche (PDW, UZI), Fucili d’assalto (AK-47).
+
+
+
+FDO: Pistole (9MM), Armi Bianche (Taser), Armi automatiche (SMG), Fucili d’assalto (Fucile D’ordinanza).
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="illegali" class="tab-content">
+
+                <div class="content-header"><h2>REGOLAMENTO AZIONI ILLEGALI</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+Non è possibile rapire se in servizio c’è solo 1 persona di determinati lavori: Polizia, Carabinieri, Finanza, Medici.
+
+E’ vietato far rianimare dai medici una persona e continuare l’azione.
+
+Nelle azioni illegali è VIETATO l’utilizzo del CASCO.
+
+Nelle rapine è vietato lootare i poliziotti.
+
+Finita un’azione bisogna dichiararlo su chat con /azione.
+
+Se entrambe le parti commettono errori, l’azione verrà annullata.
+
+Tuttavia, se viene accertato che un giocatore ha commesso un errore di proposito per far annullare l’azione, verranno presi provvedimenti sul singolo o sull’intera fazione, a seconda della gravità della situazione.
+
+E’ severamente vietato sparare da un veicolo, Fanno eccezione solo i passeggeri, che possono farlo solo se la velocità è inferiore a 150km/h.
+
+E’ severamente vietato entrare dentro i cespugli per nascondersi o per ingaggiare un player. La violazione di questa regola è un powergame rischio richiamo.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="freeroam" class="tab-content">
+
+                <div class="content-header"><h2>REGOLAMENTO AZIONI FREE-ROAM</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+Le AZIONI FREEROAM, o non organizzate, non hanno un limite di persone. Durante le azioni freeroam può avvenire un’alleanza tra 2 fazioni illegali.
+
+Le armi concesse sono solo ed esclusivamente: tutti i tipi di pistole e micro uzi per i criminali; pistole ed smg per le FDO; non sono consentiti i caschi.
+
+Non è consentito l’utilizzo di veicoli totalmente blindati. Saranno tuttavia concessi i veicoli semi blindati.
+
+Per rapire un civile: richiesti 4 FDO online. Per rapire un FDO: richiesti 6 FDO online. Necessaria una validissima motivazione RP.
+
+Durante qualsiasi fermo stradale non sarà possibile sparare a vista; svolgere RP parlato e poi tentare la fuga.
+
+Chi uscirà dal raggio di 300 metri sarà escluso dall’azione per disingaggio.
+
+Obbligatoria la clip in eventuale assistenza.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="mafie" class="tab-content">
+
+                <div class="content-header"><h2>REGOLAMENTO MAFIE</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+Il numero massimo di persone presenti in una mafia è ILLIMITATO.
+
+In caso di NO FEAR ESTREMO del rapito, si può richiedere il PERMADEATH via ticket.
+
+Massimo 1 mafia può fare alleanza con un'altra.
+
+Assalti a case fazioni o FDO Caserma/Questura possibili solo aprendo il TICKET.
+
+Vietata l’alleanza nei campi droghe.
+
+In caso di DEFAZIONAMENTO, la mafia può richiedere il PERMADEATH (tramite ticket).
+
+Una volta usciti da una mafia, il personaggio dovrà ricevere un WIPE.
+
+Per tornare a vita civile dopo una mafia: Wipe, 3 giorni di servizio Croce Rossa obbligatori.
+
+Massimo 5 staff per mafia.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="rapine" class="tab-content">
+
+                <div class="content-header"><h2>REGOLAMENTO RAPINE</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+Le FDO non possono aprire il fuoco per prime (salvo blitz o ostaggio al sicuro).
+
+Dopo 3 richieste di rilascio ostaggio negate, le FDO possono fare irruzione.
+
+Vietato startare rapine 30 minuti prima del riavvio.
+
+Le rapine una volta iniziate non possono essere annullate.
+
+Obbligatorio avvertire della presenza di ostaggi.
+
+Vietato sparare o rapire poliziotti durante lo scambio soldi/veicoli fuga.
+
+Vietato il finto ostaggio o amici complici.
+
+Contrattazione minima: 5 minuti. Ingaggio post-contrattazione: minimo 5 minuti.
+
+Disingaggio: 300 metri (esclusa polizia che prende veicolo fuga).
+
+Attesa tra rapine: 20 min.
+
+                    </span>
+
+                    <table>
+
+                        <thead>
+
+                            <tr><th>ATTIVITÀ</th><th>FFOO</th><th>CRIMINALI</th><th>OSTAGGI</th><th>ESTERNI</th><th>CASCHI</th></tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr><td>ATM</td><td>4</td><td>2/3</td><td>0</td><td>0</td><td>NO</td></tr>
+
+                            <tr><td>CASA</td><td>2</td><td>2</td><td>0</td><td>0</td><td>NO</td></tr>
+
+                            <tr><td>NEGOZIO</td><td>/</td><td>/</td><td>/</td><td>/</td><td>NO</td></tr>
+
+                            <tr><td>BANCA</td><td>/</td><td>/</td><td>/</td><td>/</td><td>NO</td></tr>
+
+                            <tr><td>GIOIELLERIA</td><td>/</td><td>/</td><td>/</td><td>/</td><td>SI</td></tr>
+
+                            <tr><td>BANCA ITALIA</td><td>/</td><td>/</td><td>/</td><td>/</td><td>SI</td></tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="medici" class="tab-content">
+
+                <div class="content-header"><h2>REGOLAMENTO MEDICI</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+I medici sono FAZIONE NEUTRALE. No info a Polizia/Criminali.
+
+Fuori servizio solo se in città ci sono almeno 3 medici attivi.
+
+Il medico non può essere ucciso in servizio.
+
+Vietato insultare i medici durante le rianimazioni.
+
+Obbligo divisa in servizio. Armi ammesse solo fuori servizio.
+
+TASER SOLO IN SERVIZIO.
+
+Vietato rianimare in acqua o esplosi (necessario trasporto in ospedale e RP dettagliato).
+
+Sicurezza: in caso di fuoco o minaccia, il medico è obbligato ad andare via.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="fdo" class="tab-content">
+
+                <div class="content-header"><h2>REGOLAMENTO FDO</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-text">
+
+Affari loschi FDO possibili solo via TICKET. Smascheramento = Permajail.
+
+Incorruttibili: Procuratore, Giudice, Capo Polizia, Comandante, Capitano.
+
+Ergastolo: minimo 5 reati gravi (a discrezione Staff).
+
+Blitz Mafia: poliziotti illimitati.
+
+Perquisizione solo con VALIDO MOTIVO RP.
+
+Uscita FDO/Mafia: Wipe obbligatorio + 1 giorno da disoccupato.
+
+Obbligo permanenza in fazione: 5 giorni.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="perma-jail" class="tab-content">
+
+                <div class="content-header"><h2>PERMADEATH / JAIL</h2></div>
+
+                <div class="rule-card">
+
+                    <span class="rule-title">> PERMADEATH</span>
+
+                    <span class="rule-text">
+
+Obbligatorio ticket e valutazione Staff. Necessarie 5 motivazioni valide RP.
+
+Ogni azione spectata da mod/admin.
+
+Chi partecipa rischia il perma a sua volta.
+
+In caso di fallimento, attesa 3 giorni.
+
+Vietato passare averi pre-wipe e vietato usare stesso nome.
+
+
+
+L’ergastolo è considerato permadeath. Permajail Boss/Vice Boss comporta scioglimento fazione.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
     </div>
 
-    <div class="content">
-        <div id="buonsenso" class="sezione active">
-            <h2>BUONSENSO</h2>
-            <div class="box">Il Buonsenso è il pilastro del server. Gioca per creare una storia, non solo per vincere.</div>
-        </div>
+</section>
 
-        <div id="generale" class="sezione">
-            <h2>GENERALE</h2>
-            <div class="box">
-                - Vietato RDM/VDM.<br>
-                - Vietato FailRP e NoFear.<br>
-                - Vietato Stream Sniping.<br>
-                - <b>VIETATO SEX RP (BAN DIRETTO).</b>
-            </div>
-        </div>
 
-        <div id="zone" class="sezione">
-            <h2>ZONE SAFE & ROSSE</h2>
-            <div class="box">
-                <b>SAFE:</b> Ospedale, Spawn, Parcheggi.<br>
-                <b>ROSSE:</b> Campi droga e Case Mafia.
-            </div>
-        </div>
-
-        <div id="armi" class="sezione">
-            <h2>ARMI</h2>
-            <div class="box">
-                Civili: 9mm e armi bianche.<br>
-                Criminali: Ak47, Uzi, PDW.<br>
-                FDO: Taser, SMG, Fucile d'ordinanza.
-            </div>
-        </div>
-
-        <div id="illegali" class="sezione">
-            <h2>AZIONI ILLEGALI</h2>
-            <div class="box">Vietato rapire se c'è solo 1 medico/FDO. Vietato sparare sopra i 150km/h.</div>
-        </div>
-    </div>
-</div>
 
 <script>
-    // FUNZIONE SEMPLICISSIMA PER I TASTI
-    function mostra(id, elemento) {
-        // Nascondi tutto
-        var sezioni = document.getElementsByClassName("sezione");
-        for (var i = 0; i < sezioni.length; i++) {
-            sezioni[i].style.display = "none";
+
+    function openTab(evt, tabName) {
+
+        var i, tabcontent, tablinks;
+
+        tabcontent = document.getElementsByClassName("tab-content");
+
+        for (i = 0; i < tabcontent.length; i++) {
+
+            tabcontent[i].style.display = "none";
+
+            tabcontent[i].classList.remove("active");
+
         }
-        // Togli colore dai bottoni
-        var bottoni = document.getElementsByClassName("btn");
-        for (var i = 0; i < bottoni.length; i++) {
-            bottoni[i].classList.remove("active");
+
+        tablinks = document.getElementsByClassName("sidebar-item");
+
+        for (i = 0; i < tablinks.length; i++) {
+
+            tablinks[i].classList.remove("active");
+
         }
-        // Mostra quella cliccata
-        document.getElementById(id).style.display = "block";
-        elemento.classList.add("active");
+
+        document.getElementById(tabName).style.display = "block";
+
+        document.getElementById(tabName).classList.add("active");
+
+        evt.currentTarget.classList.add("active");
+
     }
 
-    // CONTATORE PLAYER
-    async function update() {
+</script>
+
+
+
+<footer>
+
+    <p>&copy; 2026 LA FORTE ITALIA RP - TUTTI I DIRITTI RISERVATI</p>
+
+</footer>
+
+
+
+<script>
+    // GESTIONE TAB ORIGINALE
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; tabcontent[i].classList.remove("active"); }
+        tablinks = document.getElementsByClassName("sidebar-item");
+        for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // SCRIPT PLAYER AGGIORNATO (MOLTO PIÙ RAPIDO)
+    async function getOnlinePlayers() {
+        const serverID = '4odj5q';
+        const display = document.getElementById('player-count');
+        
         try {
-            const r = await fetch('https://servers-frontend.fivem.net/api/servers/single/4odj5q');
-            const d = await r.json();
-            document.getElementById('player-count').innerText = "GIOCATORI: " + d.Data.clients + " / " + d.Data.sv_maxclients;
+            // Utilizziamo un sistema di bypass della cache per dati in tempo reale
+            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://servers-frontend.fivem.net/api/servers/single/' + serverID)}&nocache=${Date.now()}`);
+            const json = await response.json();
+            const data = JSON.parse(json.contents);
+            
+            if (data && data.Data) {
+                display.innerText = data.Data.clients + " / " + data.Data.sv_maxclients;
+            } else {
+                display.innerText = "ONLINE";
+            }
         } catch (e) {
-            document.getElementById('player-count').innerText = "SERVER ONLINE";
+            display.innerText = "ONLINE";
         }
     }
-    update();
-    setInterval(update, 5000);
+
+    getOnlinePlayers();
+    setInterval(getOnlinePlayers, 20000); // Aggiorna ogni 5 secondi per essere istantaneo
 </script>
 
 </body>
