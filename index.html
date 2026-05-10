@@ -3,285 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Forte Italia RP | Regolamento Ufficiale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>La Forte Italia RP | Regolamento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-green: #2ecc71;
-            --primary-white: #ffffff;
-            --primary-red: #e74c3c;
-            --bg-dark: #0b0b0b;
-            --card-bg: rgba(10, 10, 10, 0.9);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://i.imgur.com/o8XJIxz.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            color: #eeeeee;
-            line-height: 1.6;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        /* CONTATORE PLAYER */
-        .player-status {
-            display: inline-flex;
-            align-items: center;
-            background: var(--card-bg);
-            padding: 10px 25px;
-            border-radius: 50px;
-            border: 2px solid var(--primary-green);
-            margin-top: 15px;
-        }
-
-        .status-dot {
-            height: 12px;
-            width: 12px;
-            background-color: var(--primary-green);
-            border-radius: 50%;
-            margin-right: 15px;
-            box-shadow: 0 0 10px var(--primary-green);
-        }
-
-        /* STRUTTURA REGOLAMENTO */
-        .regolamento-container {
-            display: flex;
-            max-width: 1300px;
-            margin: 0 auto 50px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid #333;
-            min-height: 700px;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            width: 300px;
-            background: rgba(0, 0, 0, 0.6);
-            border-right: 1px solid #333;
-        }
-
-        .sidebar-item {
-            padding: 20px 25px;
-            cursor: pointer;
-            color: #888;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            border-bottom: 1px solid #1a1a1a;
-            transition: 0.3s;
-        }
-
-        .sidebar-item:hover {
-            color: white;
-            background: rgba(255,255,255,0.05);
-        }
-
-        .sidebar-item.active {
-            color: white;
-            background: rgba(46, 204, 113, 0.15);
-            border-left: 5px solid var(--primary-green);
-        }
-
-        .rules-content {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* STILE BOX REGOLE */
-        .neon-box {
-            border: 2px solid var(--primary-red);
-            padding: 30px;
-            text-align: center;
-            border-radius: 20px;
-            margin-bottom: 30px;
-        }
-
-        .rule-card {
-            background: rgba(255,255,255,0.03);
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        h2 { color: var(--primary-green); margin-top: 0; }
+        :root { --p-green: #2ecc71; --p-red: #e74c3c; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #0b0b0b; color: white; }
         
-        @media (max-width: 900px) {
-            .regolamento-container { flex-direction: column; }
-            .sidebar { width: 100%; }
-        }
+        /* HEADER */
+        header { text-align: center; padding: 50px 20px; background: linear-gradient(to bottom, #1a1a1a, #0b0b0b); }
+        .player-box { display: inline-block; border: 2px solid var(--p-green); padding: 10px 20px; border-radius: 30px; margin-top: 20px; }
+        
+        /* CONTAINER */
+        .main-container { display: flex; max-width: 1200px; margin: 20px auto; background: #151515; border-radius: 10px; overflow: hidden; min-height: 600px; border: 1px solid #333; }
+        
+        /* SIDEBAR */
+        .menu { width: 250px; background: #111; border-right: 1px solid #333; }
+        .menu-btn { padding: 15px 20px; cursor: pointer; border-bottom: 1px solid #222; color: #888; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; font-weight: bold; }
+        .menu-btn:hover { background: #1a1a1a; color: white; }
+        .menu-btn.active { color: var(--p-green); border-left: 4px solid var(--p-green); background: rgba(46, 204, 113, 0.1); }
+
+        /* CONTENT */
+        .content { flex: 1; padding: 40px; }
+        .tab { display: none; }
+        .tab.active { display: block; }
+        .card { background: #1a1a1a; padding: 20px; border-radius: 8px; border-left: 4px solid var(--p-red); line-height: 1.8; }
+        
+        @media (max-width: 800px) { .main-container { flex-direction: column; } .menu { width: 100%; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>LA FORTE ITALIA RP</h1>
-        <div class="player-status">
-            <span class="status-dot"></span>
-            <span id="player-count">CARICAMENTO PLAYERS...</span>
-        </div>
-    </header>
+<header>
+    <h1>LA FORTE ITALIA RP</h1>
+    <div class="player-box">
+        <span id="count">CARICAMENTO...</span>
+    </div>
+</header>
 
-    <div class="regolamento-container">
-        <div class="sidebar">
-            <div class="sidebar-item active" onclick="openTab(event, 'buonsenso')">BUONSENSO</div>
-            <div class="sidebar-item" onclick="openTab(event, 'generale')">GENERALE</div>
-            <div class="sidebar-item" onclick="openTab(event, 'zone-safe')">ZONE SAFE & ROSSE</div>
-            <div class="sidebar-item" onclick="openTab(event, 'armi')">ARMI CONSENTITE</div>
-            <div class="sidebar-item" onclick="openTab(event, 'illegali')">AZIONI ILLEGALI</div>
-            <div class="sidebar-item" onclick="openTab(event, 'freeroam')">AZIONI FREE-ROAM</div>
-            <div class="sidebar-item" onclick="openTab(event, 'mafie')">MAFIE</div>
-            <div class="sidebar-item" onclick="openTab(event, 'rapine')">RAPINE</div>
-            <div class="sidebar-item" onclick="openTab(event, 'medici')">MEDICI</div>
-            <div class="sidebar-item" onclick="openTab(event, 'fdo')">FDO</div>
-            <div class="sidebar-item" onclick="openTab(event, 'perma-jail')">PERMADEATH / JAIL</div>
-        </div>
-
-        <div class="rules-content">
-            
-            <div id="buonsenso" class="tab-content active">
-                <div class="neon-box">
-                    <h2>"Non giocare per vincere una scena, gioca per creare una storia."</h2>
-                </div>
-                <div class="rule-card">
-                    Il Buonsenso è il pilastro fondamentale de <strong>La Forte Italia RP</strong>.
-                </div>
-            </div>
-
-            <div id="generale" class="tab-content">
-                <h2>GENERALE</h2>
-                <div class="rule-card">
-                    • Vietato RDM e VDM.<br>
-                    • Vietato NO FEAR e FAIL RP.<br>
-                    • Vietato MIXCHAT e METAGAME.<br>
-                    • Vietato STREAM SNIPING.<br>
-                    • <strong>ASSOLUTAMENTE VIETATO IL SEX RP.</strong>
-                </div>
-            </div>
-
-            <div id="zone-safe" class="tab-content">
-                <h2>ZONE SAFE & ROSSE</h2>
-                <div class="rule-card">
-                    <strong>SAFE:</strong> Ospedale, Spawn, Garage Centrale.<br>
-                    <strong>ROSSE:</strong> Campi Droga, Case Mafia (Ingaggio a vista).
-                </div>
-            </div>
-
-            <div id="armi" class="tab-content">
-                <h2>ARMI CONSENTITE</h2>
-                <div class="rule-card">
-                    Civili: 9mm, armi bianche.<br>
-                    Criminali: AK47, Uzi, PDW.<br>
-                    FDO: Fucile d'ordinanza, SMG, Taser.
-                </div>
-            </div>
-
-            <div id="illegali" class="tab-content">
-                <h2>AZIONI ILLEGALI</h2>
-                <div class="rule-card">
-                    Vietato rapire se c'è solo 1 medico/FDO. Vietato sparare da veicolo sopra i 150km/h.
-                </div>
-            </div>
-
-            <div id="freeroam" class="tab-content">
-                <h2>FREE-ROAM</h2>
-                <div class="rule-card">
-                    Richiesti 4 FDO per rapire civile, 6 per rapire FDO.
-                </div>
-            </div>
-
-            <div id="mafie" class="tab-content">
-                <h2>MAFIE</h2>
-                <div class="rule-card">
-                    Membri illimitati. Alleanza max tra 2 fazioni. Wipe obbligatorio post-mafia.
-                </div>
-            </div>
-
-            <div id="rapine" class="tab-content">
-                <h2>RAPINE</h2>
-                <div class="rule-card">
-                    Contrattazione minima 5 minuti. Vietato finto ostaggio.
-                </div>
-            </div>
-
-            <div id="medici" class="tab-content">
-                <h2>MEDICI</h2>
-                <div class="rule-card">
-                    Fazione neutrale. Vietato ucciderli in servizio.
-                </div>
-            </div>
-
-            <div id="fdo" class="tab-content">
-                <h2>FDO</h2>
-                <div class="rule-card">
-                    Corruzione solo via ticket. Ergastolo con 5 reati gravi.
-                </div>
-            </div>
-
-            <div id="perma-jail" class="tab-content">
-                <h2>PERMADEATH / JAIL</h2>
-                <div class="rule-card">
-                    Richiesto ticket e 5 motivazioni valide.
-                </div>
-            </div>
-
-        </div>
+<div class="main-container">
+    <div class="menu">
+        <div class="menu-btn active" onclick="apri(event, 't1')">BUONSENSO</div>
+        <div class="menu-btn" onclick="apri(event, 't2')">GENERALE</div>
+        <div class="menu-btn" onclick="apri(event, 't3')">ZONE</div>
+        <div class="menu-btn" onclick="apri(event, 't4')">ARMI</div>
+        <div class="menu-btn" onclick="apri(event, 't5')">RAPINE</div>
     </div>
 
-    <script>
-        // FUNZIONE PER FAR FUNZIONARE I TASTI (CORRETTA)
-        function openTab(evt, tabName) {
-            var i, tabcontent, sidebaritems;
-            
-            // Nascondi tutti i testi
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
+    <div class="content">
+        <div id="t1" class="tab active">
+            <h2>IL BUONSENSO</h2>
+            <div class="card" style="border-left-color: var(--p-green)">
+                Il Buonsenso è il pilastro fondamentale. Se un'azione è irrealistica, va evitata a prescindere dal regolamento.
+            </div>
+        </div>
 
-            // Togli il colore verde dai tasti
-            sidebaritems = document.getElementsByClassName("sidebar-item");
-            for (i = 0; i < sidebaritems.length; i++) {
-                sidebaritems[i].classList.remove("active");
-            }
+        <div id="t2" class="tab">
+            <h2>REGOLAMENTO GENERALE</h2>
+            <div class="card">
+                - Vietato RDM, VDM e NO FEAR.<br>
+                - Vietato FAIL RP e METAGAME.<br>
+                - Vietato lo STREAM SNIPING.<br>
+                - VIETATO IL SEX RP (BAN DIRETTO).
+            </div>
+        </div>
 
-            // Mostra quello selezionato e colora il tasto
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+        <div id="t3" class="tab">
+            <h2>ZONE SAFE E ROSSE</h2>
+            <div class="card">
+                SAFE: Ospedale, Spawn, Parcheggi.<br>
+                ROSSE: Campi droga, Case Mafia.
+            </div>
+        </div>
+
+        <div id="t4" class="tab">
+            <h2>ARMI</h2>
+            <div class="card">
+                Civili: 9mm, armi bianche.<br>
+                Criminali: AK47, Uzi, PDW.
+            </div>
+        </div>
+
+        <div id="t5" class="tab">
+            <h2>RAPINE</h2>
+            <div class="card">
+                ATM: 4 FDO / 3 CRIM.<br>
+                NEGOZIO: 4 FDO / 4 CRIM.<br>
+                BANCA: 6 FDO / 6 CRIM.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // FUNZIONE CLICK (CORAZZATA)
+    function apri(e, id) {
+        // Nasconde tutti i tab
+        var tabs = document.getElementsByClassName("tab");
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove("active");
         }
-
-        // AGGIORNAMENTO PLAYER LIVE
-        async function updatePlayers() {
-            const serverID = '4odj5q';
-            try {
-                const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${serverID}`);
-                const data = await response.json();
-                document.getElementById('player-count').innerText = `GIOCATORI ONLINE: ${data.Data.clients} / ${data.Data.sv_maxclients}`;
-            } catch (error) {
-                document.getElementById('player-count').innerText = "SERVER ONLINE";
-            }
+        // Toglie active dai bottoni
+        var btns = document.getElementsByClassName("menu-btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].classList.remove("active");
         }
-        setInterval(updatePlayers, 5000);
-        updatePlayers();
-    </script>
+        // Mostra quello giusto
+        document.getElementById(id).classList.add("active");
+        e.currentTarget.classList.add("active");
+    }
+
+    // PLAYER COUNT
+    async function getPlayers() {
+        try {
+            const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://servers-frontend.fivem.net/api/servers/single/4odj5q')}`);
+            const j = await r.json();
+            const d = JSON.parse(j.contents);
+            document.getElementById('count').innerText = "PLAYERS: " + d.Data.clients + " / " + d.Data.sv_maxclients;
+        } catch(e) { document.getElementById('count').innerText = "SERVER ONLINE"; }
+    }
+    getPlayers();
+    setInterval(getPlayers, 10000);
+</script>
+
 </body>
 </html>
